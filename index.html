@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Your Name — developer, designer, and problem solver.">
+  <title>Your Name | Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface-light: #17243a;
+      --text: #edf2f8;
+      --muted: #a8b4c7;
+      --accent: #ff8a3d;
+      --accent-hover: #ffa366;
+      --border: rgba(255,255,255,.1);
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(90%, var(--max-width)); margin: 0 auto; }
+    .accent { color: var(--accent); }
+    .section { padding: 88px 0; }
+    .section-heading { margin-bottom: 34px; }
+    .eyebrow {
+      color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
+      font-size: .78rem; font-weight: 700;
+    }
+    h2 { font-size: clamp(2rem, 4vw, 2.7rem); line-height: 1.2; margin-top: 8px; }
+    .section-intro { color: var(--muted); max-width: 650px; margin-top: 12px; }
+
+    /* Navigation */
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11,18,32,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      min-height: 72px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -.5px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a:focus { color: var(--accent); }
+    .menu-toggle {
+      display: none; border: 1px solid var(--border); color: var(--text);
+      background: var(--surface); border-radius: 8px; padding: 8px 12px;
+      font-size: 1.25rem; cursor: pointer;
+    }
+
+    /* Hero */
+    .hero { min-height: 76vh; display: grid; align-items: center; padding: 90px 0 75px; }
+    .hero-content { max-width: 780px; }
+    .hero-tag {
+      display: inline-block; padding: 7px 13px; border-radius: 999px;
+      color: var(--accent); background: rgba(255,138,61,.1);
+      border: 1px solid rgba(255,138,61,.25); font-size: .88rem; margin-bottom: 22px;
+    }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); line-height: 1.04; letter-spacing: -2.5px; }
+    .hero p { max-width: 620px; color: var(--muted); font-size: 1.12rem; margin: 24px 0 30px; }
+    .button-row { display: flex; flex-wrap: wrap; gap: 13px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 20px; border-radius: 8px; font-weight: 700;
+      border: 1px solid var(--accent); transition: .2s ease;
+    }
+    .button-primary { background: var(--accent); color: #151515; }
+    .button-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); }
+    .button-outline { color: var(--text); }
+    .button-outline:hover { background: rgba(255,138,61,.1); transform: translateY(-2px); }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 45px; align-items: start; }
+    .about-copy p { color: var(--muted); margin-bottom: 16px; }
+    .info-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 25px;
+    }
+    .info-panel h3 { margin-bottom: 14px; }
+    .info-panel p { color: var(--muted); margin: 8px 0; }
+
+    /* Skills */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill {
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      padding: 10px 16px; border-radius: 8px; font-size: .95rem;
+    }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project-card {
+      display: flex; flex-direction: column; min-height: 260px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; transition: transform .2s, border-color .2s;
+    }
+    .project-card:hover { transform: translateY(-5px); border-color: rgba(255,138,61,.6); }
+    .project-number { color: var(--accent); font-weight: 800; font-size: .85rem; }
+    .project-card h3 { margin: 13px 0 10px; font-size: 1.25rem; }
+    .project-card p { color: var(--muted); font-size: .94rem; flex: 1; }
+    .project-link { color: var(--accent); font-weight: 700; margin-top: 20px; }
+    .project-link:hover { color: var(--accent-hover); }
+
+    /* Contact and footer */
+    .contact-panel {
+      background: linear-gradient(135deg, var(--surface), #19283f);
+      border: 1px solid var(--border); border-radius: 16px; padding: clamp(25px, 5vw, 48px);
+    }
+    .contact-panel p { color: var(--muted); max-width: 620px; margin: 14px 0 24px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .contact-links a { color: var(--accent); font-weight: 700; }
+    .contact-links a:hover { color: var(--accent-hover); }
+    footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); font-size: .9rem; text-align: center; }
+
+    @media (max-width: 760px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 72px; left: 0; right: 0;
+        padding: 18px 5% 22px; background: #0e1728;
+        border-bottom: 1px solid var(--border); flex-direction: column; align-items: flex-start; gap: 17px;
+      }
+      .nav-links.open { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero { min-height: 70vh; }
+      h1 { letter-spacing: -1.5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="logo" href="#home">Your<span>Name.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <span class="hero-tag">Hello! I'm a beginner web developer</span>
+        <h1>I build things for the <span class="accent">web.</span></h1>
+        <p>
+          I'm Your Name, an aspiring developer who enjoys turning ideas into
+          simple, useful, and attractive digital experiences. I'm learning,
+          building, and improving one project at a time.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="#projects">Explore my work</a>
+          <a class="button button-outline" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">A little introduction</span>
+          <h2>About <span class="accent">Me</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              I'm a student and aspiring web developer interested in creating
+              clean, responsive websites. I started with HTML and CSS and am
+              steadily expanding my skills through hands-on practice.
+            </p>
+            <p>
+              I believe the best way to learn is by building real things,
+              understanding how they work, and improving them with feedback.
+              I'm currently looking for opportunities to learn, collaborate,
+              and contribute.
+            </p>
+          </div>
+          <aside class="info-panel">
+            <h3>Quick details</h3>
+            <p><strong>Focus:</strong> Front-end development</p>
+            <p><strong>Learning:</strong> HTML, CSS, JavaScript</p>
+            <p><strong>Based in:</strong> Your City</p>
+            <p><strong>Availability:</strong> Open to opportunities</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">What I work with</span>
+          <h2>My <span class="accent">Skills</span></h2>
+          <p class="section-intro">A growing toolkit for building websites and digital experiences.</p>
+        </div>
+        <div class="skills-list">
+          <span class="skill">HTML5</span>
+          <span class="skill">CSS3</span>
+          <span class="skill">Responsive Design</span>
+          <span class="skill">Flexbox</span>
+          <span class="skill">CSS Grid</span>
+          <span class="skill">JavaScript (learning)</span>
+          <span class="skill">Git & GitHub (learning)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">A few things I've made</span>
+          <h2>My <span class="accent">Projects</span></h2>
+          <p class="section-intro">Replace these sample projects with your own work and add links to your live demos or source code.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <span class="project-number">PROJECT 01</span>
+            <h3>Personal Portfolio</h3>
+            <p>A responsive website introducing me, highlighting my skills, and making it easy to contact me.</p>
+            <a class="project-link" href="#contact">Add project link ↗</a>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 02</span>
+            <h3>Landing Page</h3>
+            <p>A clean landing page concept focused on clear content, attractive layout, and mobile-friendly design.</p>
+            <a class="project-link" href="#contact">Add project link ↗</a>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 03</span>
+            <h3>Student Dashboard</h3>
+            <p>A simple dashboard concept for displaying useful student information in an organized interface.</p>
+            <a class="project-link" href="#contact">Add project link ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <span class="eyebrow">Have a project in mind?</span>
+          <h2>Let's work <span class="accent">together.</span></h2>
+          <p>
+            I'm always happy to connect, learn about interesting projects,
+            and meet people who enjoy building useful things. Send me a message.
+          </p>
+          <div class="contact-links">
+            <!-- Replace the email address and profile links with your own. -->
+            <a href="mailto:your.email@example.com">Email me ↗</a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Your Name. Built with HTML & CSS.</div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile menu after a navigation link is selected.
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
